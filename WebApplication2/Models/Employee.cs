@@ -1,48 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication2.Models
 {
     public class Employee
     {
-        public int id { get; set; }
-        [Required(ErrorMessage = "Полное имя не верно")]
-        [StringLength(100, ErrorMessage = "Длина имени не может превышать 100 символов")]
-        [Display(Name = "Полное имя")]
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Full Name is required")]
+        [StringLength(100, ErrorMessage = "Full Name cannot be longer than 100 characters")]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "Неверный адрес почты")]
-        [EmailAddress(ErrorMessage = "Проверьте написания адреса почты")]
-        [Display(Name = "Адрес почты")]
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Неверная должность")]
-        [StringLength(50, ErrorMessage = "Должность не должна превышать 50 символов")]
-        public string Position { get; set; }
-        [Required(ErrorMessage = "Неверный отдел")]
-        public Departament? Departament { get; set; }
-        [Required(ErrorMessage = "Неверная дата приёма")]
-        [Display(Name = "Дата принятия")]
-        [DataType(DataType.Data, ErrorMessage = "Неверный формат даты")]
-        public DataTime? HireData { get; set; }
-        [Required(ErrorMessage = "Неверная дата рж")]
-        [Display(Name = "Дата РЖ")]
-        [DataType(DataType.Data, ErrorMessage = "Неверный формат даты")]
-        public DataTime? DataOfBirthday { get; set; }
-        [Required(ErrorMessage = "Неверный тип занятости")]
-        [Display(Name = "Тип занятости")]
-        public EmployeeType? Type { get; set; }
-        [Required(ErrorMessage = "Неверный пол")]
-        [StringLength(3, ErrorMessage =("Пол может быть м или ж"))]
-        public string Gender { get; set; }
-        [Required(ErrorMessage = "Зарплата неправильная")]
-        [Range(0,double.MaxValue, ErrorMessage = "Зарплата должна быть положительной")]
-        [DataType(DataType.Currency)] 
-        public decimal Salary { get; set; }
-    } 
-    
 
-    
+        [Required(ErrorMessage = "Position is required")]
+        [StringLength(50, ErrorMessage = "Position cannot be longer than 50 characters")]
+        public string Position { get; set; }
+
+        [Required(ErrorMessage = "Department is required")]
+        public Department? Department { get; set; }
+
+        [Required(ErrorMessage = "Hire Date is required")]
+        [Display(Name = "Hire Date")]
+        [DataType(DataType.Date, ErrorMessage = "Invalid date format")]
+        public DateTime? HireDate { get; set; }
+
+        [Required(ErrorMessage = "Date of Birth is required")]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date, ErrorMessage = "Invalid date format")]
+        public DateTime? DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "Employee Type is required")]
+        [Display(Name = "Employee Type")]
+        public EmployeeType? Type { get; set; }
+
+        [Required(ErrorMessage = "Gender is required")]
+        [StringLength(6, ErrorMessage = "Gender should be Male, Female, or Other")]
+        public string? Gender { get; set; }
+
+        [Required(ErrorMessage = "Salary is required")]
+        [Range(0, double.MaxValue, ErrorMessage = "Salary must be a positive number")]
+        [DataType(DataType.Currency)]
+        public decimal? Salary { get; set; }
+    }
 }
